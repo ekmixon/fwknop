@@ -74,24 +74,22 @@ def extract_zero_coverage(lcov_file):
             line = line.strip()
 
             m = re.search('SF:(\S+)', line)
-            if m and m.group(1):
-                current_file = m.group(1)
-                zero_coverage[current_file] = {}
-                zero_coverage[current_file]['fcns'] = {}
-                zero_coverage[current_file]['lines'] = {}
+            if m and m[1]:
+                current_file = m[1]
+                zero_coverage[current_file] = {'fcns': {}, 'lines': {}}
                 continue
 
             if current_file:
                 ### look for functions that were never called
                 m = re.search('^FNDA:0,(\S+)', line)
-                if m and m.group(1):
-                    zero_coverage[current_file]['fcns'][m.group(1) + '()'] = ''
+                if m and m[1]:
+                    zero_coverage[current_file]['fcns'][f'{m[1]}()'] = ''
                     continue
 
                 ### look for lines that were never called
                 m = re.search('^DA:(\d+),0', line)
-                if m and m.group(1):
-                    zero_coverage[current_file]['lines'][m.group(1)] = ''
+                if m and m[1]:
+                    zero_coverage[current_file]['lines'][m[1]] = ''
 
     return zero_coverage
 
@@ -109,8 +107,7 @@ def parse_cmdline():
     parser.add_argument("-N", "--new-lcov-dir", type=str, \
             help="new lcov file", default="")
 
-    args = parser.parse_args()
-    return args
+    return parser.parse_args()
 
 if __name__ == "__main__":
     main()
