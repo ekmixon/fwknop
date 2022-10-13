@@ -859,18 +859,14 @@ class Fko:
         last decryption operation.  If the ID's match, then a true value
         is returned. Otherwise false is returned.
         """
-        if _fko.gpg_signature_id_match(self.ctx) > 0:
-            return True
-        return False
+        return _fko.gpg_signature_id_match(self.ctx) > 0
 
     def gpg_signature_fpr_match(self, val):
         """Compare the given fingerprint value with the fingerprint of the
         GPG signature of the last decryption operation.  If the ID's match,
         then a true value is returned. Otherwise false is returned.
         """
-        if _fko.gpg_signature_fpr_match(self.ctx) > 0:
-            return True
-        return False
+        return _fko.gpg_signature_fpr_match(self.ctx) > 0
 
     def gpg_errstr(self):
         """Return the last GPG-related error on the current context
@@ -890,26 +886,25 @@ class Fko:
     def message_type_str(self, val=None):
         """Returns the message type string for the given value.
         """
-        if val == None:
+        if val is None:
             val = _fko.get_spa_message_type(self.ctx)
 
         if val == FKO_COMMAND_MSG:
-            mts = "Command Message"
+            return "Command Message"
         elif val == FKO_ACCESS_MSG:
-            mts = "Access Message"
+            return "Access Message"
         elif val == FKO_NAT_ACCESS_MSG:
-            mts = "NAT Access Message"
+            return "NAT Access Message"
         elif val == FKO_CLIENT_TIMEOUT_ACCESS_MSG:
-            mts = "Access Message with timeout"
+            return "Access Message with timeout"
         elif val == FKO_CLIENT_TIMEOUT_NAT_ACCESS_MSG:
-            mts = "NAT access Message with timeout"
+            return "NAT access Message with timeout"
         elif val == FKO_LOCAL_NAT_ACCESS_MSG:
-            mts = "Local NAT Access Message"
+            return "Local NAT Access Message"
         elif val == FKO_CLIENT_TIMEOUT_LOCAL_NAT_ACCESS_MSG:
-            mts = "Local NAT Access Message with timeout"
+            return "Local NAT Access Message with timeout"
         else:
-            mts = "Unknown SPA message type"
-        return mts
+            return "Unknown SPA message type"
 
     def digest_type_str(self, val=None):
         """Returns the digest type string for the given value.
@@ -917,30 +912,29 @@ class Fko:
         If no value is given, the digest type for the current context
         is returned.
         """
-        if val == None:
+        if val is None:
             val = _fko.get_spa_digest_type(self.ctx)
 
         if val == FKO_DIGEST_INVALID_DATA:
-            dts = "invalid_data"
+            return "invalid_data"
         elif val == FKO_DIGEST_UNKNOWN:
-            dts = "unknown"
+            return "unknown"
         elif val == FKO_DIGEST_MD5:
-            dts = "MD5"
+            return "MD5"
         elif val == FKO_DIGEST_SHA1:
-            dts = "SHA1"
+            return "SHA1"
         elif val == FKO_DIGEST_SHA256:
-            dts = "SHA256"
+            return "SHA256"
         elif val == FKO_DIGEST_SHA384:
-            dts = "SHA384"
+            return "SHA384"
         elif val == FKO_DIGEST_SHA512:
-            dts = "SHA512"
+            return "SHA512"
         elif val == FKO_DIGEST_SHA3_256:
-            dts = "SHA3_256"
+            return "SHA3_256"
         elif val == FKO_DIGEST_SHA3_512:
-            dts = "SHA3_512"
+            return "SHA3_512"
         else:
-            dts = "Invalid digest type value"
-        return dts
+            return "Invalid digest type value"
 
     def hmac_type_str(self, val=None):
         """Returns the HMAC type string for the given value.
@@ -948,30 +942,29 @@ class Fko:
         If no value is given, the HMAC type for the current context
         is returned.
         """
-        if val == None:
+        if val is None:
             val = _fko.get_spa_hmac_type(self.ctx)
 
         if val == FKO_HMAC_INVALID_DATA:
-            ht = "invalid_data"
+            return "invalid_data"
         elif val == FKO_HMAC_UNKNOWN:
-            ht = "unknown"
+            return "unknown"
         elif val == FKO_HMAC_MD5:
-            ht = "MD5"
+            return "MD5"
         elif val == FKO_HMAC_SHA1:
-            ht = "SHA1"
+            return "SHA1"
         elif val == FKO_HMAC_SHA256:
-            ht = "SHA256"
+            return "SHA256"
         elif val == FKO_HMAC_SHA384:
-            ht = "SHA384"
+            return "SHA384"
         elif val == FKO_HMAC_SHA512:
-            ht = "SHA512"
+            return "SHA512"
         elif val == FKO_HMAC_SHA3_256:
-            ht = "SHA3_256"
+            return "SHA3_256"
         elif val == FKO_HMAC_SHA3_512:
-            ht = "SHA3_512"
+            return "SHA3_512"
         else:
-            ht = "Invalid HMAC digest type value"
-        return ht
+            return "Invalid HMAC digest type value"
 
     def encryption_type_str(self, val=None):
         """Returns the encryption type string for the given value.
@@ -979,20 +972,19 @@ class Fko:
         If no value is given, the encryption type for the current context
         is returned.
         """
-        if val == None:
+        if val is None:
             val = _fko.get_spa_encryption_type(self.ctx)
 
         if val == FKO_ENCRYPTION_INVALID_DATA:
-            ets = "invalid_data"
+            return "invalid_data"
         elif val == FKO_ENCRYPTION_UNKNOWN:
-            ets = "unknown"
+            return "unknown"
         elif val == FKO_ENCRYPTION_RIJNDAEL:
-            ets = "Rijndael (AES)"
+            return "Rijndael (AES)"
         elif val == FKO_ENCRYPTION_GPG:
-            ets = "GPG"
+            return "GPG"
         else:
-            ets = "Unknown encryption type"
-        return ets
+            return "Unknown encryption type"
 
     def encryption_mode_str(self, val=None):
         """Returns the encryption mode string for the given value.
@@ -1000,30 +992,29 @@ class Fko:
         If no value is given, the encryption mode for the current context
         is returned.
         """
-        if val == None:
+        if val is None:
             val = _fko.get_spa_encryption_mode(self.ctx)
 
         if val == FKO_ENC_MODE_UNKNOWN:
-            dts = "unknown"
+            return "unknown"
         elif val == FKO_ENC_MODE_ECB:
-            dts = "ECB"
+            return "ECB"
         elif val == FKO_ENC_MODE_CBC:
-            dts = "CBC"
+            return "CBC"
         elif val == FKO_ENC_MODE_CFB:
-            dts = "CFB"
+            return "CFB"
         elif val == FKO_ENC_MODE_PCBC:
-            dts = "PCBC"
+            return "PCBC"
         elif val == FKO_ENC_MODE_OFB:
-            dts = "OFB"
+            return "OFB"
         elif val == FKO_ENC_MODE_CTR:
-            dts = "CTR"
+            return "CTR"
         elif val == FKO_ENC_MODE_ASYMMETRIC:
-            dts = "ASYMMETRIC"
+            return "ASYMMETRIC"
         elif val == FKO_ENC_MODE_CBC_LEGACY_IV:
-            dts = "CBC_LEGACY_IV"
+            return "CBC_LEGACY_IV"
         else:
-            dts = "Invalid encryption mode value"
-        return dts
+            return "Invalid encryption mode value"
 
 
     def __call__(self):
@@ -1070,10 +1061,7 @@ class FkoAccess():
         """
         self.host = host
         self.proto = proto
-        if port is None:
-            self.port = []
-        else:
-            self.port = self._check_port(port)
+        self.port = [] if port is None else self._check_port(port)
 
     def setport(self, port):
         """Set the port(s) for the Access Request.
@@ -1113,7 +1101,7 @@ class FkoAccess():
         """
         if len(self.port) < 1:
             raise FkoException("No port value in FkoAccess")
-        return self.host+','+self.proto+'/'+join(map(str,self.port),",")
+        return f'{self.host},{self.proto}/' + join(map(str,self.port),",")
 
     def __call__(self):
         """Calls the str() method.

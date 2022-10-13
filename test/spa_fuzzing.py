@@ -75,14 +75,9 @@ def main():
     ]
 
     pkt_id = 1
-    payload_num = 0
-
-    for spa_payload in spa_payloads:
+    for payload_num, spa_payload in enumerate(spa_payloads, start=1):
 
         payload_num += 1
-
-        print "# start tests with payload:       ", spa_payload + "\n" \
-            "# base64 encoded original payload:", base64.b64encode(spa_payload)
 
         ### valid payload tests - all digest types
         pkt_id = valid_payloads(args, spa_payload, payload_num, pkt_id)
